@@ -1,0 +1,176 @@
+
+<div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #111827; padding: 24px; max-width: 1200px; line-height: 1.6;">
+  <header style="text-align: center; margin-bottom: 32px; border-bottom: 2px solid #e5e7eb; padding-bottom: 16px;">
+    <h1 style="color: #1f2937; margin-bottom: 8px; font-size: 28px;">Functional Requirements Document (FRD)</h1>
+    <h2 style="color: #6b7280; margin: 0; font-size: 20px; font-weight: normal;">CRM — Version 1</h2>
+    <p style="color: #9ca3af; margin: 8px 0 0 0; font-style: italic;">Domain: Marketing</p>
+  </header>
+
+  <section style="margin-bottom: 24px;">
+    <h3 style="color: #1f2937; border-bottom: 2px solid #3b82f6; padding-bottom: 4px;">🎯 Scope and Context</h3>
+    <p><strong>In scope:</strong> Core business functionality as defined in the BRD requirements.</p>
+    <p><strong>Out of scope:</strong> Advanced integrations and third-party services not explicitly mentioned in the BRD.</p>
+  </section>
+
+  <section style="margin-bottom: 24px;">
+    <h3 style="color: #1f2937; border-bottom: 2px solid #3b82f6; padding-bottom: 4px;">👥 Stakeholders</h3>
+    <p>Marketing managers, Campaign managers, Content creators, Data analysts, Email specialists, Marketing operations team, IT/Integration team; primary channels: web, email, mobile, social media, SMS.</p>
+  </section>
+
+  <section style="margin-bottom: 24px;">
+    <h3 style="color: #1f2937; border-bottom: 2px solid #3b82f6; padding-bottom: 4px;">📋 Assumptions and Constraints</h3>
+    <p><strong>Assumptions:</strong> Standard infrastructure available; users have appropriate access rights; existing systems can integrate as required.</p>
+    <p><strong>Constraints:</strong> Regulatory compliance requirements; integration capabilities; project timeline and budget constraints.</p>
+    
+  </section>
+
+  <section style="margin-bottom: 24px;">
+    <h3 style="color: #1f2937; border-bottom: 2px solid #3b82f6; padding-bottom: 4px;">⚡ Non-functional Requirements (NFRs)</h3>
+    <ul style="list-style-type: none; padding-left: 0;">
+      <li style="margin-bottom: 8px; padding: 8px; background: #f8fafc; border-left: 4px solid #10b981;">• Performance: Email delivery < 5 minutes, segmentation queries < 10s, campaign launch < 2 minutes, analytics refresh < 30 seconds.</li><li style="margin-bottom: 8px; padding: 8px; background: #f8fafc; border-left: 4px solid #10b981;">• Deliverability: Email inbox rate > 95%, SMS delivery rate > 98%, unsubscribe processing < 1 hour.</li><li style="margin-bottom: 8px; padding: 8px; background: #f8fafc; border-left: 4px solid #10b981;">• Compliance: GDPR/CCPA consent management, CAN-SPAM compliance, data retention policies, suppression list management.</li>
+    </ul>
+  </section>
+
+  <section style="margin-bottom: 24px;">
+    <h3 style="color: #1f2937; border-bottom: 2px solid #3b82f6; padding-bottom: 4px;">🗃️ Data Model Highlights</h3>
+    <p>Core entities: Customer, Segment, Campaign, Journey, Message, Channel, Asset, Experiment, Attribution; key relationships: Customer–Segment (M‑M), Campaign–Message (1‑M), Customer–Journey (M‑M), Campaign–Experiment (1‑M).</p>
+  </section>
+
+  <section style="margin-bottom: 24px;">
+    <h3 style="color: #1f2937; border-bottom: 2px solid #3b82f6; padding-bottom: 4px;">🔗 Interfaces and Integrations</h3>
+    <p>CRM systems: Customer data and lead management; Email/SMS providers: SendGrid, Mailgun, Twilio; Analytics: Google Analytics, Adobe Analytics; Social platforms: Facebook, LinkedIn APIs; CDP: Customer data platform integration.</p>
+  </section>
+
+  <section style="margin-bottom: 24px;">
+    <h3 style="color: #1f2937; border-bottom: 2px solid #3b82f6; padding-bottom: 4px;">⚙️ Functional Requirements</h3>
+    
+        <div style="margin-bottom: 20px; border-left: 4px solid #3b82f6; padding-left: 15px; background: #f8fafc; padding: 15px; border-radius: 5px;">
+            <h4 style="margin: 0 0 10px 0; color: #1f2937;">FR-001 <Div Style="Font-Family:Arial</h4>
+            <p><strong>Description:</strong> The system shall <div style="font-family:Arial.</p>
+            <p><strong>Roles:</strong> Business users, Operations team, System administrators.</p>
+            
+            <div style="margin: 12px 0;">
+                <h5 style="color: #2d3748; margin-bottom: 6px;">Acceptance Criteria:</h5>
+                <ol style="color: #4a5568; line-height: 1.6; margin: 0; padding-left: 20px;">
+                    
+            <li>System response time must be within 3 seconds under normal load</li>
+            <li>All user inputs validated with clear error messages for invalid data</li>
+            <li>User interface provides intuitive navigation with consistent design</li>
+            <li>Data changes are persisted immediately with backup and recovery</li>
+            <li>Audit logs maintained for all user actions and system events</li>
+            
+                </ol>
+            </div>
+            
+            <div style="margin: 12px 0;">
+                <h5 style="color: #2d3748; margin-bottom: 6px;">Validation Rules:</h5>
+                <ol style="color: #4a5568; line-height: 1.6; margin: 0; padding-left: 20px;">
+                    
+            <li>Required fields: all mandatory fields completed before submission</li>
+            <li>Data formats: conform to specified patterns (email, phone, dates)</li>
+            <li>User permissions: verified before restricted functionality access</li>
+            <li>Input lengths: within defined min/max character limits</li>
+            <li>XSS protection: all user inputs sanitized and validated</li>
+            
+                </ol>
+            </div>
+            
+            <p><strong>Traceability:</strong> Links to business objectives and project scope requirements.</p>
+        </div>
+        
+        <div style="margin-bottom: 20px; border-left: 4px solid #3b82f6; padding-left: 15px; background: #f8fafc; padding: 15px; border-radius: 5px;">
+            <h4 style="margin: 0 0 10px 0; color: #1f2937;">FR-002 Color:#111827</h4>
+            <p><strong>Description:</strong> The system shall color:#111827.</p>
+            <p><strong>Roles:</strong> Business users, Operations team, System administrators.</p>
+            
+            <div style="margin: 12px 0;">
+                <h5 style="color: #2d3748; margin-bottom: 6px;">Acceptance Criteria:</h5>
+                <ol style="color: #4a5568; line-height: 1.6; margin: 0; padding-left: 20px;">
+                    
+            <li>System response time must be within 3 seconds under normal load</li>
+            <li>All user inputs validated with clear error messages for invalid data</li>
+            <li>User interface provides intuitive navigation with consistent design</li>
+            <li>Data changes are persisted immediately with backup and recovery</li>
+            <li>Audit logs maintained for all user actions and system events</li>
+            
+                </ol>
+            </div>
+            
+            <div style="margin: 12px 0;">
+                <h5 style="color: #2d3748; margin-bottom: 6px;">Validation Rules:</h5>
+                <ol style="color: #4a5568; line-height: 1.6; margin: 0; padding-left: 20px;">
+                    
+            <li>Required fields: all mandatory fields completed before submission</li>
+            <li>Data formats: conform to specified patterns (email, phone, dates)</li>
+            <li>User permissions: verified before restricted functionality access</li>
+            <li>Input lengths: within defined min/max character limits</li>
+            <li>XSS protection: all user inputs sanitized and validated</li>
+            
+                </ol>
+            </div>
+            
+            <p><strong>Traceability:</strong> Links to business objectives and project scope requirements.</p>
+        </div>
+        
+        <div style="margin-bottom: 20px; border-left: 4px solid #3b82f6; padding-left: 15px; background: #f8fafc; padding: 15px; border-radius: 5px;">
+            <h4 style="margin: 0 0 10px 0; color: #1f2937;">FR-003 Padding:18Px</h4>
+            <p><strong>Description:</strong> The system shall padding:18px.</p>
+            <p><strong>Roles:</strong> Business users, Operations team, System administrators.</p>
+            
+            <div style="margin: 12px 0;">
+                <h5 style="color: #2d3748; margin-bottom: 6px;">Acceptance Criteria:</h5>
+                <ol style="color: #4a5568; line-height: 1.6; margin: 0; padding-left: 20px;">
+                    
+            <li>System response time must be within 3 seconds under normal load</li>
+            <li>All user inputs validated with clear error messages for invalid data</li>
+            <li>User interface provides intuitive navigation with consistent design</li>
+            <li>Data changes are persisted immediately with backup and recovery</li>
+            <li>Audit logs maintained for all user actions and system events</li>
+            
+                </ol>
+            </div>
+            
+            <div style="margin: 12px 0;">
+                <h5 style="color: #2d3748; margin-bottom: 6px;">Validation Rules:</h5>
+                <ol style="color: #4a5568; line-height: 1.6; margin: 0; padding-left: 20px;">
+                    
+            <li>Required fields: all mandatory fields completed before submission</li>
+            <li>Data formats: conform to specified patterns (email, phone, dates)</li>
+            <li>User permissions: verified before restricted functionality access</li>
+            <li>Input lengths: within defined min/max character limits</li>
+            <li>XSS protection: all user inputs sanitized and validated</li>
+            
+                </ol>
+            </div>
+            
+            <p><strong>Traceability:</strong> Links to business objectives and project scope requirements.</p>
+        </div>
+        
+  </section>
+
+  <section style="margin-bottom: 24px;">
+    <h3 style="color: #1f2937; border-bottom: 2px solid #3b82f6; padding-bottom: 4px;">✅ Field-level Validations</h3>
+    <ol style="padding-left: 20px;">
+      <li><strong>V-001:</strong> Enforce data validation and integrity checks.</li><li><strong>V-002:</strong> Enforce proper authentication and authorization.</li>
+    </ol>
+  </section>
+
+  <section style="margin-bottom: 24px;">
+    <h3 style="color: #1f2937; border-bottom: 2px solid #3b82f6; padding-bottom: 4px;">🔄 Workflow Scenarios (High-level)</h3>
+    <p><strong>Primary Workflows:</strong> User registration → Authentication → Core functionality access → Data processing → Results/Output generation → Audit logging.</p>
+    <p><strong>Exception Handling:</strong> Error validation → User notification → Retry mechanisms → Escalation procedures → Recovery processes.</p>
+  </section>
+
+  <section style="margin-bottom: 24px;">
+    <h3 style="color: #1f2937; border-bottom: 2px solid #3b82f6; padding-bottom: 4px;">📊 Acceptance Criteria Summary</h3>
+    <p>All functional requirements must be traceable to business objectives, measurable through specific acceptance criteria, and validated through comprehensive testing scenarios.</p>
+  </section>
+
+  <footer style="border-top: 1px solid #e5e7eb; padding-top: 16px; margin-top: 32px;">
+    <p style="font-size: 12px; color: #6b7280; margin: 0;">
+      Generated by BA Assistant AI Agent • Domain: Marketing • 
+      <span style="color: #3b82f6;">Functional Requirements: 3</span> • 
+      <span style="color: #10b981;">Validations: 2</span>
+    </p>
+  </footer>
+</div>

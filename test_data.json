@@ -1,0 +1,7 @@
+{
+  "project": "Test System",
+  "scope": "\n    Included:\n    \u2022 User authentication and authorization\n    \u2022 Data management and storage\n    \u2022 Reporting and analytics dashboard\n    \u2022 Email notification system\n    \n    Excluded:\n    \u2022 Third-party integrations\n    \u2022 Advanced reporting features\n    ",
+  "objectives": "\n    \u2022 Improve system efficiency by 30%\n    \u2022 Reduce manual processing time\n    \u2022 Enhance user experience\n    \u2022 Streamline business operations\n    ",
+  "budget": "\u20b925 lakhs covering development and licenses",
+  "assumptions": "Users will receive adequate training"
+}

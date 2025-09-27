@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Enhanced FRD Generation Test</title>
+</head>
+<body>
+    <h1>Testing Enhanced FRD Generation with Real BRD Content</h1>
+    
+    <h2>Test BRD Content (Financial Domain)</h2>
+    <div id="test-brd-content">
+        <h3>EPIC-01: Investor Onboarding System</h3>
+        <ul>
+            <li>Digital intake with guided forms for accredited investor registration</li>
+            <li>Eligibility verification through accreditation status and income verification</li>
+            <li>Document upload portal with real-time validation and version control</li>
+            <li>Integrated workflows for review and approval processes</li>
+        </ul>
+
+        <h3>EPIC-02: Compliance and Risk Management</h3>
+        <ul>
+            <li>KYC/AML screening and automated compliance checks</li>
+            <li>Risk scoring methodology with customizable parameters</li>
+            <li>Automated compliance reporting and audit trails</li>
+            <li>Integration with third-party screening services</li>
+        </ul>
+
+        <h3>EPIC-03: Investment Processing</h3>
+        <ul>
+            <li>Secure payment processing with multiple funding sources</li>
+            <li>Real-time portfolio allocation and rebalancing</li>
+            <li>Electronic signature and document management</li>
+            <li>Tax reporting and regulatory documentation</li>
+        </ul>
+    </div>
+
+    <script>
+        // Test the enhanced requirement extraction
+        const testBrdContent = `
+        <h3>EPIC-01: Investor Onboarding System</h3>
+        <ul>
+            <li>Digital intake with guided forms for accredited investor registration</li>
+            <li>Eligibility verification through accreditation status and income verification</li>
+            <li>Document upload portal with real-time validation and version control</li>
+            <li>Integrated workflows for review and approval processes</li>
+        </ul>
+
+        <h3>EPIC-02: Compliance and Risk Management</h3>
+        <ul>
+            <li>KYC/AML screening and automated compliance checks</li>
+            <li>Risk scoring methodology with customizable parameters</li>
+            <li>Automated compliance reporting and audit trails</li>
+            <li>Integration with third-party screening services</li>
+        </ul>
+
+        <h3>EPIC-03: Investment Processing</h3>
+        <ul>
+            <li>Secure payment processing with multiple funding sources</li>
+            <li>Real-time portfolio allocation and rebalancing</li>
+            <li>Electronic signature and document management</li>
+            <li>Tax reporting and regulatory documentation</li>
+        </ul>
+        `;
+
+        // Simulate the domain detection function
+        function detectDomainFromBrdText(brdText) {
+            const text = brdText.toLowerCase();
+            const domains = {
+                financial: ['investor', 'portfolio', 'kyc', 'aml', 'accredited', 'compliance', 'fund', 'investment', 'tax reporting'],
+                marketing: ['campaign', 'customer', 'audience', 'brand', 'analytics', 'conversion', 'lead generation'],
+                healthcare: ['patient', 'medical', 'provider', 'clinical', 'diagnosis', 'treatment', 'hipaa'],
+                ecommerce: ['product', 'cart', 'checkout', 'order', 'payment', 'shipping', 'inventory'],
+                airline: ['flight', 'passenger', 'booking', 'check-in', 'seat', 'baggage', 'airport']
+            };
+
+            let maxScore = 0;
+            let detectedDomain = 'general';
+
+            Object.entries(domains).forEach(([domain, keywords]) => {
+                const score = keywords.reduce((acc, keyword) => {
+                    return acc + (text.split(keyword).length - 1);
+                }, 0);
+
+                if (score > maxScore) {
+                    maxScore = score;
+                    detectedDomain = domain;
+                }
+            });
+
+            return detectedDomain;
+        }
+
+        // Simulate requirement extraction
+        function extractRequirementsFromBrd(brdText) {
+            const requirements = [];
+            const epicRegex = /<h3>EPIC-(\d+):\s*([^<]+)<\/h3>([\s\S]*?)(?=<h3>|$)/gi;
+            let match;
+
+            while ((match = epicRegex.exec(brdText)) !== null) {
+                const epicId = `EPIC-${match[1].padStart(2, '0')}`;
+                const epicTitle = match[2].trim();
+                const epicContent = match[3];
+
+                const bulletPoints = [];
+                const listItemRegex = /<li>([^<]+)<\/li>/gi;
+                let listMatch;
+
+                while ((listMatch = listItemRegex.exec(epicContent)) !== null) {
+                    bulletPoints.push(listMatch[1].trim());
+                }
+
+                if (bulletPoints.length > 0) {
+                    requirements.push({
+                        epicId: epicId,
+                        title: epicTitle,
+                        requirements: bulletPoints
+                    });
+                }
+            }
+
+            return requirements;
+        }
+
+        // Test the functions
+        console.log('=== Enhanced FRD Generation Test ===');
+        
+        const domain = detectDomainFromBrdText(testBrdContent);
+        console.log('Detected Domain:', domain);
+        
+        const requirements = extractRequirementsFromBrd(testBrdContent);
+        console.log('Extracted Requirements:', requirements);
+
+        // Test meaningful EPIC title generation
+        function generateMeaningfulEpicTitle(requirements, domain, index) {
+            const reqText = requirements.join(' ').toLowerCase();
+
+            if (domain === 'financial') {
+                if (reqText.includes('investor') && reqText.includes('onboard')) {
+                    return 'Investor Onboarding & Digital Intake';
+                }
+                if (reqText.includes('kyc') || reqText.includes('compliance')) {
+                    return 'Compliance & Risk Management';
+                }
+                if (reqText.includes('payment') || reqText.includes('processing')) {
+                    return 'Investment Processing & Portfolio Management';
+                }
+            }
+
+            return `Business Process ${index + 1}`;
+        }
+
+        // Test EPIC conversion
+        function convertRequirementsToEpics(requirements, domain) {
+            return requirements.map((req, index) => {
+                const meaningfulTitle = generateMeaningfulEpicTitle(req.requirements, domain, index);
+                
+                return {
+                    id: req.epicId,
+                    title: meaningfulTitle,
+                    description: `${meaningfulTitle} encompasses the following requirements`,
+                    functionalRequirements: req.requirements,
+                    priority: 'High',
+                    estimatedEffort: '2-3 sprints'
+                };
+            });
+        }
+
+        const epics = convertRequirementsToEpics(requirements, domain);
+        console.log('Generated EPICs:', epics);
+
+        // Display results
+        document.body.innerHTML += `
+            <h2>Test Results</h2>
+            <h3>Detected Domain: ${domain}</h3>
+            <h3>Generated EPICs:</h3>
+            <ol>
+                ${epics.map(epic => `
+                    <li>
+                        <strong>${epic.title}</strong>
+                        <ul>
+                            ${epic.functionalRequirements.map(req => `<li>${req}</li>`).join('')}
+                        </ul>
+                    </li>
+                `).join('')}
+            </ol>
+        `;
+    </script>
+</body>
+</html>

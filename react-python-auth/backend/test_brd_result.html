@@ -1,0 +1,82 @@
+
+<div style="font-family:Arial,Helvetica,sans-serif;color:#111827;padding:18px;">
+  <h1 style="text-align:center;margin-bottom:6px;">Business Requirement Document (BRD)</h1>
+  <h2 style="text-align:center;margin-top:2px;">Banking — BRD Version-1</h2>
+  <hr/>
+  <h3>Executive Summary</h3>
+  <p>Banking BRD: Brief Business Requirements</p>
+
+  <h3>Project Scope</h3>
+  <p>Project Scope (Included & Excluded)
+• Included: retail onboarding (KYC/AML), account opening and servicing, payments and transfers (IMPS/NEFT/RTGS/UPI), cards issuance and lifecycle, deposits/loans module light, bill pay, alerts/notifications, customer support tickets, dashboards and regulatory/audit reporting.
+• Excluded (phase 1): treasury/trading platforms, wealth/robo advisory, full loan origination for complex products, branch hardware/POS rollout, and legacy core replacement.</p>
+
+  <h3>Business Objectives</h3>
+  <ul>
+    <li>Reduce manual customer support inquiries related to balances and statements</li><li>Improve payment straight-through-processing and reduce failed transactions</li><li>Enhance security and fraud detection capabilities</li><li>Ensure regulatory compliance and audit readiness</li>
+  </ul>
+
+  <h3>👥 Stakeholders</h3>
+  <p>Account holders, Branch staff, Relationship managers, Operations team, Compliance officers, IT/Security; primary channels: web, mobile, ATM, branch.</p>
+
+  <h3>Budget Details</h3>
+  <p>Budget Details
+• Estimated ₹1.8–₹3.2 crore for design/build, KYC/AML/sanctions and credit bureau integrations, payments rails connectivity, security and performance testing, deployment/observability, data migration, training/change, and first year run/support; phased MVP → scale.</p>
+
+  <h3>Business Requirements</h3>
+  <ol>
+    <li>The system shall Brief Business Requirements.</li>
+<li>The system shall Onboarding & KYC: digital forms, document capture, OCR/IDV, sanctions/PEP checks, e sign/e mandate, multi level review and decisioning.</li>
+<li>The system shall Accounts & Servicing: savings/current account setup, mandates/nominees, address/contact changes, statements, cheque services.</li>
+<li>The system shall Payments: UPI/net banking/NEFT/RTGS/IMPS with beneficiaries, limits, payee management, standing instructions, bill pay and recharge.</li>
+<li>The system shall Cards: debit card request, PIN set/reset, domestic/international controls, hotlist/reissue.</li>
+<li>The system shall Deposits/Loans (light): FD/RD booking/closure, prepayment simulation.</li>
+<li>The system shall Simple personal loan pre eligibility and offer acceptance.</li>
+<li>The system shall Notifications & Comms: email/SMS/push for OTPs, transactions, service updates, and campaigns with preference center.</li>
+<li>The system shall Support: ticket creation from app, status, SLA timers, knowledge base.</li>
+<li>The system shall Secure document upload.</li>
+<li>The system shall Reporting & Compliance: regulator returns extracts, suspicious activity flags, complete audit logs and data retention.</li>
+<li>The system shall Admin: roles/profiles, parameter/config management (limits, fees, holidays), content/CMS banners.</li>
+<li>The system shall Project Scope (Included & Excluded).</li>
+<li>The system shall Included: retail onboarding (KYC/AML), account opening and servicing, payments and transfers (IMPS/NEFT/RTGS/UPI), cards issuance and lifecycle, deposits/loans module light, bill pay, alerts/notifications, customer support tickets, dashboards and regulatory/audit reporting.</li>
+<li>The system shall Excluded (phase 1): treasury/trading platforms, wealth/robo advisory, full loan origination for complex products, branch hardware/POS rollout, and legacy core replacement.</li>
+<li>The system shall Business Objectives.</li>
+<li>The system shall Reduce account opening turnaround time and drop offs, improve payment straight through processing, decrease support tickets and call AHT, raise digital adoption/active MAU, and strengthen compliance/audit readiness with complete traceability.</li>
+<li>The system shall Budget Details.</li>
+<li>The system shall Estimated ₹1.8–₹3.2 crore for design/build, KYC/AML/sanctions and credit bureau integrations, payments rails connectivity, security and performance testing, deployment/observability, data migration, training/change, and first year run/support.</li>
+<li>The system shall Phased MVP → scale.</li>
+<li>The system shall Assumptions.</li>
+<li>The system shall KYC/AML, credit bureau, payments, and messaging providers are contracted with sandbox access.</li>
+<li>The system shall Policies for privacy, data retention, and consent are approved.</li>
+<li>The system shall SSO and environment parity exist.</li>
+<li>The system shall Product, fees, and limit matrices are finalized.</li>
+<li>The system shall Core banking and switch/middleware expose stable APIs.</li>
+
+  </ol>
+
+  <h3>Assumptions</h3>
+  <p>Assumptions
+• KYC/AML, credit bureau, payments, and messaging providers are contracted with sandbox access; policies for privacy, data retention, and consent are approved; SSO and environment parity exist; product, fees, and limit matrices are finalized; core banking and switch/middleware expose stable APIs.</p>
+
+  <h3>Constraints</h3>
+  <p>Standard regulatory, integration and schedule constraints apply.</p>
+
+  <h3>Validations & Acceptance Criteria</h3>
+  <ol>
+    <li>Enforce Validations.</li>
+<li>Enforce Identity & KYC: mandatory demographics, document number formats, OCR confidence thresholds, liveness/selfie match, sanctions/PEP clearing before activation.</li>
+<li>Enforce Payments: beneficiary validation, risk/velocity checks, 2FA/OTP or 3DS where applicable, amount within customer/product limits, idempotency on submission, success callback before posting.</li>
+<li>Enforce Accounts & Cards: unique customer/account identifiers, address and PIN policies, card controls consistent with scheme/region.</li>
+<li>Enforce blocked statuses prevent transactions.</li>
+<li>Enforce Deposits/Loans: eligibility and limit checks, tenor/amount ranges, premature closure penalties rules, EMI and interest calculations verified.</li>
+<li>Enforce Security & Compliance: RBAC enforced for every sensitive action, audit trail for create/read/update/delete, encryption in transit/at rest, session timeout and device binding, WCAG 2.1 AA for customer screens.</li>
+<li>Enforce Data Integrity: totals and balances reconcile after each posting.</li>
+<li>Enforce failure paths roll back cleanly with clear user messaging.</li>
+
+  </ol>
+
+  <h3>Appendices</h3>
+  <p>Appendix A: Glossary<br/>Appendix B: References</p>
+
+  <hr/><p style="font-size:11px;color:#6b7280;">Generated by BA Assistant Tool (enhanced fallback)</p>
+</div>

@@ -1,0 +1,629 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-commerce Interactive Checkout Test - Interactive Prototype</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f8fafc;
+            color: #2d3748;
+        }
+        
+        .prototype-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            min-height: 100vh;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        
+        .prototype-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        
+        .prototype-navigation {
+            background: #2d3748;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .nav-button {
+            background: none;
+            border: none;
+            color: white;
+            padding: 1rem 2rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 14px;
+        }
+        
+        .nav-button:hover,
+        .nav-button.active {
+            background: #4a5568;
+        }
+        
+        .prototype-page {
+            display: none;
+            padding: 2rem;
+            min-height: 500px;
+        }
+        
+        .prototype-page.active {
+            display: block;
+        }
+        
+        .page-title {
+            color: #2d3748;
+            margin-bottom: 2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #4299e1;
+        }
+        
+        /* Component Styles */
+        .component {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            background: white;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #4a5568;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: #4299e1;
+            box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.1);
+        }
+        
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s;
+            margin-right: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .btn-primary {
+            background: #4299e1;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #3182ce;
+        }
+        
+        .btn-secondary {
+            background: #e2e8f0;
+            color: #4a5568;
+        }
+        
+        .btn-secondary:hover {
+            background: #cbd5e0;
+        }
+        
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+        
+        .product-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 1rem;
+            background: white;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .product-image {
+            width: 100%;
+            height: 150px;
+            background: #f7fafc;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            color: #a0aec0;
+        }
+        
+        .search-bar {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1.1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+        
+        .filters {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .filter-select {
+            padding: 0.5rem 1rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 4px;
+            background: white;
+        }
+        
+        .progress-indicator {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+            padding: 1rem 0;
+        }
+        
+        .progress-step {
+            flex: 1;
+            text-align: center;
+            padding: 0.5rem;
+            background: #e2e8f0;
+            margin-right: 1rem;
+            border-radius: 4px;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .progress-step:hover {
+            background: #cbd5e0;
+        }
+        
+        .progress-step.active {
+            background: #4299e1;
+            color: white;
+        }
+        
+        .step-content {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            background: white;
+        }
+        
+        .cart-items-list {
+            margin: 1rem 0;
+        }
+        
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #f7fafc;
+        }
+        
+        .cart-total {
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin: 1rem 0;
+            text-align: right;
+        }
+        
+        .confirmation-details {
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .confirmation-details p {
+            margin: 1rem 0;
+            font-size: 1.1rem;
+        }
+        
+        input[type="text"], input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 2px solid #e2e8f0;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        input[type="text"]:focus, input[type="email"]:focus {
+            border-color: #4299e1;
+            outline: none;
+        }
+            align-items: center;
+            padding: 1rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .quantity-btn {
+            width: 30px;
+            height: 30px;
+            border: 1px solid #e2e8f0;
+            background: white;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        
+        .interactive-demo {
+            background: #f0fff4;
+            border: 2px solid #68d391;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+            text-align: center;
+        }
+        
+        .demo-message {
+            color: #2f855a;
+            font-weight: 500;
+        }
+        
+        @media (max-width: 768px) {
+            .prototype-navigation {
+                flex-direction: column;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .filters {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="prototype-container">
+        <div class="prototype-header">
+            <h1>🎯 E-commerce Interactive Checkout Test - Interactive Prototype</h1>
+            <p>Domain: Ecommerce | Generated: 20250925_220347</p>
+        </div>
+        
+        <div class="prototype-navigation">
+            <button class="nav-button" onclick="showPage('dashboard')">Ecommerce Dashboard</button>
+            <button class="nav-button" onclick="showPage('cart')">Shopping Cart</button>
+            <button class="nav-button" onclick="showPage('checkout')">Checkout</button>
+        </div>
+        
+        
+        <div id="dashboard" class="prototype-page">
+            <h2 class="page-title">Ecommerce Dashboard</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value">1,234</div>
+                    <div>Total Orders</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">$125K</div>
+                    <div>Revenue</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">89%</div>
+                    <div>Products</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">89%</div>
+                    <div>Customers</div>
+                </div></div>
+        </div>
+
+        <div id="cart" class="prototype-page">
+            <h2 class="page-title">Shopping Cart</h2>
+            <div class="component"><h3>Cart Items</h3>
+                <div class="cart-item">
+                    <div>Product 1</div>
+                    <div class="quantity-controls">
+                        <button class="quantity-btn" onclick="updateQuantity(-1)">-</button>
+                        <span>1</span>
+                        <button class="quantity-btn" onclick="updateQuantity(1)">+</button>
+                    </div>
+                    <div>$99.99</div>
+                </div>
+                <div class="cart-item">
+                    <div>Product 2</div>
+                    <div class="quantity-controls">
+                        <button class="quantity-btn" onclick="updateQuantity(-1)">-</button>
+                        <span>1</span>
+                        <button class="quantity-btn" onclick="updateQuantity(1)">+</button>
+                    </div>
+                    <div>$99.99</div>
+                </div>
+                <div class="cart-item">
+                    <div>Product 3</div>
+                    <div class="quantity-controls">
+                        <button class="quantity-btn" onclick="updateQuantity(-1)">-</button>
+                        <span>1</span>
+                        <button class="quantity-btn" onclick="updateQuantity(1)">+</button>
+                    </div>
+                    <div>$99.99</div>
+                </div></div>
+<div class="component"><button class="btn btn-primary">Proceed to Checkout</button></div>
+        </div>
+
+        <div id="checkout" class="prototype-page">
+            <h2 class="page-title">Checkout</h2>
+            <div class="component"><div class="progress-indicator"><div class="progress-step checkout-step active" onclick="showCheckoutStep('cart')">Cart</div><div class="progress-step checkout-step " onclick="showCheckoutStep('shipping')">Shipping</div><div class="progress-step checkout-step " onclick="showCheckoutStep('payment')">Payment</div><div class="progress-step checkout-step " onclick="showCheckoutStep('confirmation')">Confirmation</div></div>
+            <div class="step-content" id="step-cart" style="display: block;">
+                <h3>Shopping Cart</h3>
+                <div class="cart-items-list">
+                    <div class="cart-item">Sample Product 1 - $29.99</div>
+                    <div class="cart-item">Sample Product 2 - $39.99</div>
+                </div>
+                <div class="cart-total">Total: $69.98</div>
+                <button class="btn btn-primary" onclick="showCheckoutStep(\'shipping\')">Continue to Shipping</button>
+            </div>
+            
+            <div class="step-content" id="step-shipping" style="display: none;">
+                <h3>Shipping Information</h3>
+                <form id="shippingForm">
+                    <input type="text" placeholder="Full Name" required style="width: 100%; margin: 10px 0; padding: 10px;">
+                    <input type="text" placeholder="Address" required style="width: 100%; margin: 10px 0; padding: 10px;">
+                    <input type="text" placeholder="City" required style="width: 100%; margin: 10px 0; padding: 10px;">
+                    <input type="text" placeholder="Postal Code" required style="width: 100%; margin: 10px 0; padding: 10px;">
+                </form>
+                <button class="btn btn-primary" onclick="processShipping()">Continue to Payment</button>
+            </div>
+            
+            <div class="step-content" id="step-payment" style="display: none;">
+                <h3>Payment Information</h3>
+                <form id="paymentForm">
+                    <input type="text" placeholder="Card Number" required style="width: 100%; margin: 10px 0; padding: 10px;">
+                    <input type="text" placeholder="Expiry Date (MM/YY)" required style="width: 100%; margin: 10px 0; padding: 10px;">
+                    <input type="text" placeholder="CVV" required style="width: 100%; margin: 10px 0; padding: 10px;">
+                </form>
+                <button class="btn btn-primary" onclick="processPayment()">Place Order</button>
+            </div>
+            
+            <div class="step-content" id="step-confirmation" style="display: none;">
+                <h3>Order Confirmation</h3>
+                <div class="confirmation-details">
+                    <p>✅ Your order has been placed successfully!</p>
+                    <p>Order Number: #ORD-2025-001</p>
+                    <p>Total: $69.98</p>
+                    <p>You will receive a confirmation email shortly.</p>
+                </div>
+            </div>
+            </div>
+<div class="component"><form onsubmit="return validateForm('checkout-form')">
+                <div class="form-group">
+                    <label class="form-label">Shipping Address</label>
+                    <input type="text" class="form-input" placeholder="Enter shipping address" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Billing Address</label>
+                    <input type="text" class="form-input" placeholder="Enter billing address" required>
+                </div><button type="submit" class="btn btn-primary">Submit</button></form></div>
+<div class="component"><button class="btn btn-primary">Place Order</button></div>
+        </div>
+    </div>
+    
+    <script>
+        // Interactive prototype functionality
+        function showPage(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.prototype-page');
+            pages.forEach(page => page.classList.remove('active'));
+            
+            // Show selected page
+            const selectedPage = document.getElementById(pageId);
+            if (selectedPage) {
+                selectedPage.classList.add('active');
+            }
+            
+            // Update navigation
+            const navButtons = document.querySelectorAll('.nav-button');
+            navButtons.forEach(btn => btn.classList.remove('active'));
+            
+            const activeBtn = document.querySelector(`[onclick="showPage('${pageId}')"]`);
+            if (activeBtn) {
+                activeBtn.classList.add('active');
+            }
+        }
+        
+        // Checkout step functionality
+        function showCheckoutStep(step) {
+            const steps = ['cart', 'shipping', 'payment', 'confirmation'];
+            const stepButtons = document.querySelectorAll('.checkout-step');
+            const stepContents = document.querySelectorAll('.step-content');
+            
+            // Update step buttons
+            stepButtons.forEach((btn, index) => {
+                btn.classList.remove('active');
+                if (steps[index] === step) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            // Show step content
+            stepContents.forEach(content => {
+                content.style.display = 'none';
+            });
+            
+            const activeContent = document.getElementById(`step-${step}`);
+            if (activeContent) {
+                activeContent.style.display = 'block';
+            }
+        }
+        
+        // Form submission handlers
+        function processShipping() {
+            const form = document.getElementById('shippingForm');
+            if (form && validateForm(form)) {
+                showNotification('Shipping information saved!');
+                showCheckoutStep('payment');
+            } else {
+                showNotification('Please fill in all shipping details', 'error');
+            }
+        }
+        
+        function processPayment() {
+            const form = document.getElementById('paymentForm');
+            if (form && validateForm(form)) {
+                showNotification('Processing payment...');
+                setTimeout(() => {
+                    showNotification('Payment successful!');
+                    showCheckoutStep('confirmation');
+                }, 2000);
+            } else {
+                showNotification('Please fill in payment details', 'error');
+            }
+        }
+        
+        function validateForm(form) {
+            const inputs = form.querySelectorAll('input[required], select[required]');
+            let isValid = true;
+            
+            inputs.forEach(input => {
+                if (!input.value.trim()) {
+                    input.style.borderColor = '#f44336';
+                    isValid = false;
+                } else {
+                    input.style.borderColor = '#ddd';
+                }
+            });
+            
+            return isValid;
+        }
+        
+        function showNotification(message, type = 'success') {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.textContent = message;
+            notification.style.cssText = `
+                position: fixed; top: 20px; right: 20px; z-index: 1000;
+                padding: 15px 20px; border-radius: 5px; color: white;
+                background: ${type === 'success' ? '#4CAF50' : '#f44336'};
+                animation: slideIn 0.3s ease-out;
+            `;
+            document.body.appendChild(notification);
+            setTimeout(() => notification.remove(), 3000);
+        }
+
+        // Initialize first page as active
+        document.addEventListener('DOMContentLoaded', function() {
+            const firstPage = document.querySelector('.prototype-page');
+            if (firstPage) {
+                firstPage.classList.add('active');
+                const firstBtn = document.querySelector('.nav-button');
+                if (firstBtn) {
+                    firstBtn.classList.add('active');
+                }
+            }
+        });
+        
+        // Interactive elements
+        function handleLogin() {
+            showDemo('Login successful! Redirecting to dashboard...');
+            setTimeout(() => showPage('dashboard'), 2000);
+        }
+        
+        function addToCart(productName) {
+            showDemo(`Added ${productName} to cart!`);
+        }
+        
+        function updateQuantity(change) {
+            showDemo(`Quantity updated! ${change > 0 ? 'Increased' : 'Decreased'} by ${Math.abs(change)}`);
+        }
+        
+        function processPayment() {
+            showDemo('Processing payment... Order confirmed!');
+        }
+        
+        function showDemo(message) {
+            const demoDiv = document.createElement('div');
+            demoDiv.className = 'interactive-demo';
+            demoDiv.innerHTML = `<div class="demo-message">✅ ${message}</div>`;
+            
+            const container = document.querySelector('.prototype-page.active');
+            if (container) {
+                container.insertBefore(demoDiv, container.firstChild);
+                setTimeout(() => demoDiv.remove(), 3000);
+            }
+        }
+        
+        // Search functionality
+        function handleSearch(query) {
+            if (query.trim()) {
+                showDemo(`Searching for "${query}"... Found 12 results!`);
+            }
+        }
+        
+        // Form validation
+        function validateForm(formId) {
+            showDemo('Form validated successfully!');
+            return false; // Prevent actual submission
+        }
+    </script>
+</body>
+</html>
+    

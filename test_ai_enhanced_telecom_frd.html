@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🤖 AI-Enhanced Telecom FRD Generation Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 1400px; margin: 0 auto; padding: 20px; background: #f5f7fa; }
+        .container { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .section { margin: 20px 0; padding: 15px; border: 1px solid #e1e8ed; border-radius: 8px; }
+        .epic { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
+        .story { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; margin: 10px 0; }
+        .validation { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white; margin: 5px 0; padding: 10px; }
+        .acceptance { background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); color: white; margin: 5px 0; padding: 10px; }
+        h1, h2, h3 { color: #2c3e50; }
+        .test-input { background: #ecf0f1; padding: 15px; margin: 10px 0; border-radius: 8px; }
+        .result { background: #d4edda; padding: 15px; margin: 10px 0; border-radius: 8px; }
+        .error { background: #f8d7da; padding: 15px; margin: 10px 0; border-radius: 8px; }
+        .domain-badge { background: #3498db; color: white; padding: 5px 15px; border-radius: 20px; display: inline-block; margin: 5px; }
+        .ai-badge { background: #e74c3c; color: white; padding: 3px 8px; border-radius: 12px; font-size: 12px; font-weight: bold; }
+        .criteria-item { margin: 8px 0; padding: 8px; background: rgba(255,255,255,0.2); border-radius: 4px; }
+        .epic-title { font-size: 1.3em; font-weight: bold; margin-bottom: 10px; }
+        .story-meta { font-size: 0.9em; opacity: 0.9; margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🤖 AI-Enhanced Telecom FRD Generation Test</h1>
+        <div class="ai-badge">AI DOMAIN DETECTION ACTIVE</div>
+        
+        <div id="test-content">
+            <div class="section">
+                <h2>📋 Test Input: Telecom Domain BRD</h2>
+                <div class="test-input" id="brd-input">
+                    <!-- Will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>🎯 AI-Generated EPICs</h2>
+                <div id="epics-output">
+                    <!-- Will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>📖 AI-Generated User Stories</h2>
+                <div id="stories-output">
+                    <!-- Will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>🔍 AI Validation Analysis</h2>
+                <div id="validation-analysis">
+                    <!-- Will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Test BRD content from your actual telecom example
+        const testBrdHtml = `
+        <h1>Business Requirements Document - Telecom Project</h1>
+        <h2>Executive Summary</h2>
+        <p>This document captures the business requirements for the project Telecom. It follows standard BA practice aligned to BABOK and provides the scope, objectives, requirements, budget and validations required for delivering the solution.</p>
+        
+        <h3>EPIC-01: Core Business Requirements</h3>
+        <h4>Requirements:</h4>
+        <ul>
+            <li>Lead to Order: catalog/offer management, eligibility, credit check, order capture.</li>
+            <li>KYC & Activation: digital KYC, SIM/eSIM provisioning, MNP, activation workflows.</li>
+            <li>Charging & Billing: real time rating/OCS hooks, invoicing, adjustments, dunning.</li>
+        </ul>
+
+        <h3>EPIC-02: Core Business Requirements</h3>
+        <h4>Requirements:</h4>
+        <ul>
+            <li>Care & Assurance: omni channel tickets, diagnostics, outages, knowledge base.</li>
+            <li>Payments & Collections: cards/UPI/ACH, autopay, refunds, reconciliation.</li>
+            <li>Partner Channel: retailer onboarding, commissions, inventory, sales reporting.</li>
+        </ul>
+
+        <h3>EPIC-03: Reporting & Analytics</h3>
+        <h4>Requirements:</h4>
+        <ul>
+            <li>Analytics & Compliance: usage, churn, revenue, audit trails, regulatory reports.</li>
+        </ul>
+        `;
+
+        // Display test input
+        document.getElementById('brd-input').innerHTML = testBrdHtml;
+
+        // Enhanced domain detection with telecom support
+        function detectDomainFromBrdText(brdText) {
+            const text = brdText.toLowerCase();
+            const domainKeywords = {
+                telecom: ['telecom', 'telecommunication', 'sim', 'esim', 'mnp', 'ocs', 'billing', 'charging', 'kyc', 'activation', 'provisioning', 'hlr', 'hss', 'udm', 'pcf', 'trai', 'dot', 'carrier', 'subscriber', 'msisdn', 'imsi', 'network', 'tariff', 'plan', 'postpaid', 'prepaid', 'roaming', 'sms', 'data', 'voice', 'bss', 'oss', 'revenue assurance', 'dunning', 'mediation'],
+                financial: ['investment', 'portfolio', 'trading', 'finance', 'banking', 'fund', 'asset', 'equity', 'debt', 'risk', 'compliance', 'audit', 'revenue', 'profit', 'budget', 'cost', 'accounting', 'transaction'],
+                healthcare: ['patient', 'medical', 'clinical', 'diagnosis', 'treatment', 'healthcare', 'hospital', 'doctor', 'nurse', 'prescription', 'hipaa', 'medical record', 'clinical'],
+                ecommerce: ['product', 'cart', 'checkout', 'payment', 'order', 'inventory', 'shipping', 'customer', 'ecommerce', 'online store', 'marketplace', 'catalog'],
+                marketing: ['campaign', 'brand', 'customer', 'lead', 'conversion', 'engagement', 'social media', 'advertising', 'promotion', 'analytics', 'roi', 'ctr', 'cpc', 'segment']
+            };
+
+            let maxScore = 0;
+            let detectedDomain = 'generic';
+
+            Object.keys(domainKeywords).forEach(domain => {
+                const score = domainKeywords[domain].filter(keyword => text.includes(keyword)).length;
+                if (score > maxScore) {
+                    maxScore = score;
+                    detectedDomain = domain;
+                }
+            });
+
+            console.log(`🎯 Domain Detection Results:`, Object.keys(domainKeywords).map(d => 
+                `${d}: ${domainKeywords[d].filter(k => text.includes(k)).length} matches`
+            ));
+
+            return { domain: detectedDomain, score: maxScore };
+        }
+
+        // Enhanced requirement extraction
+        function extractRequirementsFromBrd(brdText) {
+            const lines = brdText.split('\n').map(line => line.trim()).filter(line => line);
+            const requirements = [];
+            
+            let currentEpicId = '';
+            let currentEpicTitle = '';
+            let inRequirementsSection = false;
+            
+            for (const line of lines) {
+                // Detect EPIC sections
+                if (line.match(/EPIC-\d+/)) {
+                    currentEpicId = line.match(/EPIC-\d+/)[0];
+                    currentEpicTitle = line.split(':')[1]?.trim() || 'Core System';
+                    inRequirementsSection = false;
+                    continue;
+                }
+                
+                // Detect Requirements sections within EPICs
+                if (line.toLowerCase().includes('requirements:') && currentEpicId) {
+                    inRequirementsSection = true;
+                    continue;
+                }
+                
+                // Extract detailed requirements from bullet points within EPIC sections
+                if (inRequirementsSection && (line.startsWith('•') || line.startsWith('-') || line.startsWith('*'))) {
+                    const cleanLine = line.replace(/^[•\-\*]\s*/, '').trim();
+                    if (cleanLine.length > 10) {
+                        requirements.push({
+                            text: cleanLine,
+                            epicId: currentEpicId,
+                            epicTitle: currentEpicTitle,
+                            priority: 'Medium',
+                            isDetailed: true
+                        });
+                    }
+                }
+            }
+            
+            return requirements;
+        }
+
+        // Enhanced EPIC title generation with telecom support
+        function generateMeaningfulEpicTitle(requirements, domain) {
+            const reqText = Array.isArray(requirements) 
+                ? requirements.map(r => typeof r === 'string' ? r : r.text).join(' ').toLowerCase()
+                : requirements.toLowerCase();
+            
+            // Telecom domain specific grouping
+            if (domain === 'telecom') {
+                if (reqText.includes('lead to order') || reqText.includes('catalog') || reqText.includes('offer') || reqText.includes('eligibility') || reqText.includes('credit check')) {
+                    return 'Product Catalog & Order Management';
+                }
+                if (reqText.includes('kyc') || reqText.includes('activation') || reqText.includes('sim') || reqText.includes('esim') || reqText.includes('mnp') || reqText.includes('provisioning')) {
+                    return 'Customer Onboarding & SIM Activation';
+                }
+                if (reqText.includes('charging') || reqText.includes('billing') || reqText.includes('rating') || reqText.includes('ocs') || reqText.includes('invoicing') || reqText.includes('dunning')) {
+                    return 'Charging & Billing Management';
+                }
+                if (reqText.includes('care') || reqText.includes('assurance') || reqText.includes('tickets') || reqText.includes('diagnostics') || reqText.includes('outages') || reqText.includes('knowledge base')) {
+                    return 'Customer Care & Service Assurance';
+                }
+                if (reqText.includes('payment') || reqText.includes('collection') || reqText.includes('cards') || reqText.includes('upi') || reqText.includes('autopay') || reqText.includes('refund')) {
+                    return 'Payment & Collection Management';
+                }
+                if (reqText.includes('partner') || reqText.includes('retailer') || reqText.includes('commission') || reqText.includes('inventory') || reqText.includes('sales reporting')) {
+                    return 'Partner & Channel Management';
+                }
+                if (reqText.includes('analytics') || reqText.includes('compliance') || reqText.includes('usage') || reqText.includes('churn') || reqText.includes('revenue') || reqText.includes('audit') || reqText.includes('regulatory')) {
+                    return 'Analytics & Regulatory Compliance';
+                }
+            }
+            
+            return 'Core Business Functionality';
+        }
+
+        // Generate user stories with telecom-specific personas
+        function generateUserStoriesFromRequirements(epic, domain, epicIndex) {
+            const stories = [];
+            const requirements = epic.functionalRequirements;
+            
+            requirements.forEach((req, reqIndex) => {
+                const storyId = `US-${String(epicIndex + 1).padStart(2, '0')}-${String(reqIndex + 1).padStart(2, '0')}`;
+                const persona = getAppropriatePersona([req], domain);
+                const storyWant = generateStoryWant([req]);
+                const storySoThat = generateStorySoThat([req], domain);
+                const acceptanceCriteria = generateStoryAcceptanceCriteria([req]);
+                const validationCriteria = getStoryValidationCriteria(domain, epic.title, 'Implement', persona);
+                
+                stories.push({
+                    id: storyId,
+                    title: `${epic.title} - ${req.split(' ').slice(0, 4).join(' ')}`,
+                    asA: persona,
+                    iWant: storyWant,
+                    soThat: storySoThat,
+                    acceptanceCriteria: acceptanceCriteria,
+                    validationCriteria: validationCriteria,
+                    priority: epic.priority,
+                    storyPoints: 5,
+                    epicId: epic.id
+                });
+            });
+            
+            return stories;
+        }
+
+        function getAppropriatePersona(requirements, domain) {
+            const reqText = requirements.join(' ').toLowerCase();
+            
+            if (domain === 'telecom') {
+                if (reqText.includes('catalog') || reqText.includes('offer') || reqText.includes('order') || reqText.includes('eligibility')) {
+                    return 'Customer';
+                }
+                if (reqText.includes('kyc') || reqText.includes('activation') || reqText.includes('provisioning') || reqText.includes('sim')) {
+                    return 'Customer Service Representative';
+                }
+                if (reqText.includes('billing') || reqText.includes('charging') || reqText.includes('payment') || reqText.includes('collection')) {
+                    return 'Billing Specialist';
+                }
+                if (reqText.includes('care') || reqText.includes('ticket') || reqText.includes('diagnostic') || reqText.includes('trouble')) {
+                    return 'Technical Support Agent';
+                }
+                if (reqText.includes('partner') || reqText.includes('retailer') || reqText.includes('commission') || reqText.includes('sales')) {
+                    return 'Channel Partner';
+                }
+                if (reqText.includes('analytics') || reqText.includes('compliance') || reqText.includes('audit') || reqText.includes('regulatory')) {
+                    return 'Business Analyst';
+                }
+            }
+            
+            return 'User';
+        }
+
+        function generateStoryWant(requirements) {
+            const firstReq = requirements[0].toLowerCase();
+            
+            if (firstReq.includes('catalog') || firstReq.includes('offer')) {
+                return 'browse product catalog and view available offers';
+            }
+            if (firstReq.includes('eligibility') || firstReq.includes('credit check')) {
+                return 'check customer eligibility and perform credit verification';
+            }
+            if (firstReq.includes('kyc') || firstReq.includes('activation')) {
+                return 'complete KYC verification and activate services';
+            }
+            if (firstReq.includes('sim') || firstReq.includes('esim') || firstReq.includes('provisioning')) {
+                return 'provision and activate SIM/eSIM with seamless setup';
+            }
+            if (firstReq.includes('charging') || firstReq.includes('billing') || firstReq.includes('rating')) {
+                return 'manage real-time charging and accurate billing processes';
+            }
+            if (firstReq.includes('care') || firstReq.includes('ticket') || firstReq.includes('diagnostic')) {
+                return 'handle customer care requests and resolve technical issues';
+            }
+            if (firstReq.includes('payment') || firstReq.includes('collection')) {
+                return 'process payments and manage collections efficiently';
+            }
+            if (firstReq.includes('partner') || firstReq.includes('retailer')) {
+                return 'manage partner relationships and channel operations';
+            }
+            if (firstReq.includes('analytics') || firstReq.includes('reporting')) {
+                return 'generate analytics and compliance reports';
+            }
+            
+            return `implement ${firstReq.split(' ').slice(0, 5).join(' ')}`;
+        }
+
+        function generateStorySoThat(requirements, domain) {
+            const reqText = requirements.join(' ').toLowerCase();
+            
+            if (domain === 'telecom') {
+                if (reqText.includes('catalog') || reqText.includes('offer') || reqText.includes('order')) {
+                    return 'I can easily discover and subscribe to relevant services';
+                }
+                if (reqText.includes('kyc') || reqText.includes('activation') || reqText.includes('provisioning')) {
+                    return 'I can quickly onboard and start using telecom services';
+                }
+                if (reqText.includes('billing') || reqText.includes('charging') || reqText.includes('rating')) {
+                    return 'I can ensure accurate and transparent billing processes';
+                }
+                if (reqText.includes('care') || reqText.includes('ticket') || reqText.includes('support')) {
+                    return 'I can receive timely and effective customer support';
+                }
+                if (reqText.includes('payment') || reqText.includes('collection')) {
+                    return 'I can make payments conveniently and maintain service continuity';
+                }
+                if (reqText.includes('partner') || reqText.includes('channel') || reqText.includes('retailer')) {
+                    return 'I can effectively manage and grow channel partnerships';
+                }
+                if (reqText.includes('analytics') || reqText.includes('compliance') || reqText.includes('regulatory')) {
+                    return 'I can make data-driven decisions and ensure regulatory compliance';
+                }
+            }
+            
+            return 'I can accomplish my business objectives efficiently';
+        }
+
+        function generateStoryAcceptanceCriteria(requirements) {
+            const criteria = [];
+            
+            requirements.forEach(req => {
+                const reqLower = req.toLowerCase();
+                
+                if (reqLower.includes('catalog') || reqLower.includes('offer')) {
+                    criteria.push('Product catalog displays accurate pricing and feature information');
+                    criteria.push('Offer eligibility rules are properly validated');
+                }
+                if (reqLower.includes('kyc') || reqLower.includes('verification')) {
+                    criteria.push('KYC verification completes within regulatory timeframes');
+                    criteria.push('Identity validation meets telecom compliance standards');
+                }
+                if (reqLower.includes('sim') || reqLower.includes('esim') || reqLower.includes('activation')) {
+                    criteria.push('SIM/eSIM provisioning completes successfully');
+                    criteria.push('Service activation is verified and functional');
+                }
+                if (reqLower.includes('billing') || reqLower.includes('charging') || reqLower.includes('rating')) {
+                    criteria.push('Real-time charging calculations are accurate');
+                    criteria.push('Billing data is generated and validated correctly');
+                }
+                if (reqLower.includes('care') || reqLower.includes('ticket') || reqLower.includes('support')) {
+                    criteria.push('Customer support tickets are created and tracked properly');
+                    criteria.push('Resolution workflows meet defined SLA requirements');
+                }
+                if (reqLower.includes('analytics') || reqLower.includes('reporting') || reqLower.includes('compliance')) {
+                    criteria.push('Reports generate accurate data within specified timeframes');
+                    criteria.push('Regulatory compliance requirements are met and auditable');
+                }
+            });
+            
+            if (criteria.length === 0) {
+                criteria.push('User can successfully complete the required functionality');
+                criteria.push('System validates all inputs and provides feedback');
+            }
+            
+            criteria.push('Performance meets acceptable standards');
+            const uniqueCriteria = [...new Set(criteria)];
+            return uniqueCriteria.slice(0, 4);
+        }
+
+        function getStoryValidationCriteria(domain, epicTitle, action, persona) {
+            const baseValidations = [
+                'Input validation ensures data integrity and prevents malformed data entry',
+                'Error handling provides clear, actionable feedback to users',
+                'Security validation prevents unauthorized access and data breaches',
+                'Performance validation ensures response times meet user expectations'
+            ];
+
+            const telecomValidations = [
+                'Telecom regulatory compliance (TRAI/DoT) must be enforced for all operations',
+                'Number portability (MNP) processing must complete within regulatory timeframes',
+                'Real-time charging accuracy must be validated to prevent revenue leakage',
+                'KYC validation must comply with telecom industry standards and DoT guidelines',
+                'SIM/eSIM provisioning must follow secure activation protocols',
+                'Billing accuracy must be verified with mediation and reconciliation processes',
+                'Network integration APIs (HLR/HSS/OCS) must handle failover scenarios'
+            ];
+
+            let validations = [...baseValidations];
+            
+            if (domain === 'telecom') {
+                if (epicTitle.toLowerCase().includes('billing') || epicTitle.toLowerCase().includes('charging')) {
+                    validations = validations.concat(telecomValidations.filter(v => 
+                        v.includes('billing') || v.includes('charging') || v.includes('revenue') || v.includes('mediation')
+                    ));
+                } else if (epicTitle.toLowerCase().includes('onboarding') || epicTitle.toLowerCase().includes('activation')) {
+                    validations = validations.concat(telecomValidations.filter(v => 
+                        v.includes('KYC') || v.includes('activation') || v.includes('provisioning') || v.includes('SIM')
+                    ));
+                } else {
+                    validations = validations.concat(telecomValidations.slice(0, 3));
+                }
+            }
+            
+            const uniqueValidations = [...new Set(validations)];
+            return uniqueValidations.slice(0, 7);
+        }
+
+        // Run the test
+        function runTest() {
+            try {
+                console.log('🚀 Starting AI-Enhanced Telecom FRD Generation Test...');
+                
+                // Step 1: Domain Detection
+                const domainResult = detectDomainFromBrdText(testBrdHtml);
+                console.log(`🎯 Detected Domain: ${domainResult.domain} (score: ${domainResult.score})`);
+                
+                // Step 2: Extract Requirements
+                const requirements = extractRequirementsFromBrd(testBrdHtml);
+                console.log(`📋 Extracted ${requirements.length} requirements`);
+                
+                // Step 3: Generate EPICs
+                const epics = convertRequirementsToEpics(requirements, domainResult.domain);
+                console.log(`🎯 Generated ${epics.length} EPICs`);
+                
+                // Step 4: Generate User Stories
+                const userStories = [];
+                epics.forEach((epic, epicIndex) => {
+                    const stories = generateUserStoriesFromRequirements(epic, domainResult.domain, epicIndex);
+                    userStories.push(...stories);
+                });
+                console.log(`📖 Generated ${userStories.length} user stories`);
+                
+                // Display results
+                displayResults(domainResult, epics, userStories);
+                
+            } catch (error) {
+                console.error('❌ Test failed:', error);
+                document.getElementById('epics-output').innerHTML = `<div class="error">Test failed: ${error.message}</div>`;
+            }
+        }
+
+        function convertRequirementsToEpics(requirements, domain) {
+            const epics = [];
+            
+            if (requirements.length === 0) {
+                return [];
+            }
+            
+            // Group requirements by EPIC ID
+            const epicGroups = {};
+            requirements.forEach(req => {
+                const epicId = req.epicId || 'EPIC-01';
+                if (!epicGroups[epicId]) {
+                    epicGroups[epicId] = [];
+                }
+                epicGroups[epicId].push(req);
+            });
+            
+            // Create EPICs based on actual requirements content
+            Object.keys(epicGroups).forEach(epicId => {
+                const reqs = epicGroups[epicId];
+                const epicTitle = generateMeaningfulEpicTitle(reqs, domain);
+                
+                epics.push({
+                    id: epicId,
+                    title: epicTitle,
+                    description: `${epicTitle} encompasses the following requirements`,
+                    functionalRequirements: reqs.map(req => req.text),
+                    priority: 'High'
+                });
+            });
+            
+            return epics;
+        }
+
+        function displayResults(domainResult, epics, userStories) {
+            // Display Domain Detection
+            document.getElementById('validation-analysis').innerHTML = `
+                <div class="result">
+                    <span class="domain-badge">Domain: ${domainResult.domain.toUpperCase()}</span>
+                    <span class="domain-badge">Confidence Score: ${domainResult.score}</span>
+                    <span class="ai-badge">AI ENHANCED</span>
+                </div>
+            `;
+            
+            // Display EPICs
+            let epicsHtml = '';
+            epics.forEach(epic => {
+                epicsHtml += `
+                    <div class="epic">
+                        <div class="epic-title">${epic.id}: ${epic.title}</div>
+                        <p><strong>Description:</strong> ${epic.description}</p>
+                        <p><strong>Priority:</strong> ${epic.priority}</p>
+                        <h4>🎯 Functional Requirements:</h4>
+                        <ul>
+                            ${epic.functionalRequirements.map(req => `<li class="criteria-item">${req}</li>`).join('')}
+                        </ul>
+                    </div>
+                `;
+            });
+            
+            document.getElementById('epics-output').innerHTML = epicsHtml;
+            
+            // Display User Stories
+            let storiesHtml = '';
+            userStories.forEach(story => {
+                storiesHtml += `
+                    <div class="story">
+                        <h4>${story.id}: ${story.title}</h4>
+                        <p><strong>As a</strong> ${story.asA}, <strong>I want to</strong> ${story.iWant}</p>
+                        <p><strong>So that</strong> ${story.soThat}</p>
+                        
+                        <div class="acceptance">
+                            <h5>✅ Acceptance Criteria <span class="ai-badge">AI GENERATED</span></h5>
+                            <ul>
+                                ${story.acceptanceCriteria.map(criteria => `<li class="criteria-item">${criteria}</li>`).join('')}
+                            </ul>
+                        </div>
+                        
+                        <div class="validation">
+                            <h5>🔍 Validation Criteria <span class="ai-badge">AI ENHANCED</span></h5>
+                            <ul>
+                                ${story.validationCriteria.map(criteria => `<li class="criteria-item">${criteria}</li>`).join('')}
+                            </ul>
+                        </div>
+                        
+                        <div class="story-meta">
+                            <strong>Priority:</strong> ${story.priority} | 
+                            <strong>Story Points:</strong> ${story.storyPoints} | 
+                            <strong>EPIC:</strong> ${story.epicId}
+                        </div>
+                    </div>
+                `;
+            });
+            
+            document.getElementById('stories-output').innerHTML = storiesHtml;
+        }
+
+        // Run test when page loads
+        window.onload = runTest;
+    </script>
+</body>
+</html>

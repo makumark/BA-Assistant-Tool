@@ -1,0 +1,516 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎨 Wireframes: Student Learning Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f8fafc;
+            color: #1a202c;
+        }
+        
+        .wireframe-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .wireframe-header {
+            background: white;
+            padding: 24px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin-bottom: 24px;
+            text-align: center;
+        }
+        
+        .wireframe-header h1 {
+            color: #2d3748;
+            margin-bottom: 8px;
+            font-size: 28px;
+        }
+        
+        .domain-badge {
+            background: #4299e1;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            display: inline-block;
+        }
+        
+        .page-navigation {
+            background: white;
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        .page-nav-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .page-tab {
+            padding: 8px 16px;
+            background: #e2e8f0;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+        
+        .page-tab:hover {
+            background: #cbd5e0;
+        }
+        
+        .page-tab.active {
+            background: #4299e1;
+            color: white;
+        }
+        
+        .wireframe-page {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            margin-bottom: 24px;
+            overflow: hidden;
+            display: none;
+        }
+        
+        .wireframe-page.active {
+            display: block;
+        }
+        
+        .page-header {
+            background: #edf2f7;
+            padding: 16px 24px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+        
+        .page-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 4px;
+        }
+        
+        .page-type {
+            font-size: 12px;
+            color: #718096;
+            text-transform: uppercase;
+        }
+        
+        .wireframe-canvas {
+            padding: 24px;
+            min-height: 600px;
+            position: relative;
+        }
+        
+        .wireframe-component {
+            border: 2px dashed #cbd5e0;
+            background: #f7fafc;
+            margin-bottom: 16px;
+            padding: 16px;
+            border-radius: 8px;
+            position: relative;
+            transition: all 0.2s;
+        }
+        
+        .wireframe-component:hover {
+            border-color: #4299e1;
+            background: #ebf8ff;
+        }
+        
+        .component-label {
+            font-weight: 600;
+            color: #4a5568;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .component-icon {
+            width: 16px;
+            height: 16px;
+            background: #4299e1;
+            border-radius: 3px;
+        }
+        
+        .component-details {
+            font-size: 12px;
+            color: #718096;
+            line-height: 1.4;
+        }
+        
+        .layout-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        
+        .layout-centered {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 400px;
+        }
+        
+        .layout-sidebar {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 16px;
+        }
+        
+        .form-fields {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 12px;
+        }
+        
+        .form-field {
+            border: 1px solid #e2e8f0;
+            height: 36px;
+            border-radius: 4px;
+            background: white;
+            padding: 8px 12px;
+            font-size: 14px;
+            color: #a0aec0;
+        }
+        
+        .form-buttons {
+            display: flex;
+            gap: 8px;
+            margin-top: 16px;
+        }
+        
+        .form-button {
+            padding: 8px 16px;
+            border-radius: 6px;
+            border: 1px solid #e2e8f0;
+            background: #f7fafc;
+            font-size: 14px;
+            color: #4a5568;
+        }
+        
+        .form-button.primary {
+            background: #4299e1;
+            color: white;
+            border-color: #4299e1;
+        }
+        
+        .table-mockup {
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            margin-top: 12px;
+        }
+        
+        .table-header {
+            background: #edf2f7;
+            padding: 12px;
+            font-weight: 600;
+            font-size: 14px;
+            color: #4a5568;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .table-row {
+            padding: 12px;
+            border-bottom: 1px solid #f7fafc;
+            font-size: 14px;
+            color: #718096;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-top: 12px;
+        }
+        
+        .stat-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 16px;
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2d3748;
+        }
+        
+        .stat-label {
+            font-size: 12px;
+            color: #718096;
+            text-transform: uppercase;
+            margin-top: 4px;
+        }
+        
+        .navigation-bar {
+            background: #2d3748;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            margin-bottom: 16px;
+        }
+        
+        .nav-item {
+            color: #e2e8f0;
+            font-size: 14px;
+            text-decoration: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+        
+        .nav-item:hover {
+            background: #4a5568;
+            color: white;
+        }
+        
+        .chart-placeholder {
+            background: #f7fafc;
+            border: 2px dashed #cbd5e0;
+            height: 200px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #718096;
+            margin-top: 12px;
+        }
+        
+        .responsive-note {
+            background: #fff5cd;
+            border: 1px solid #f6e05e;
+            border-radius: 6px;
+            padding: 12px;
+            margin-top: 20px;
+            font-size: 12px;
+            color: #744210;
+        }
+    </style>
+</head>
+<body>
+    <div class="wireframe-container">
+        <div class="wireframe-header">
+            <h1>🎨 Interactive Wireframes</h1>
+            <h2>Student Learning Platform</h2>
+            <div class="domain-badge">EDUCATION DOMAIN</div>
+            <div style="margin-top: 12px; font-size: 14px; color: #718096;">
+                Generated from user stories • Click tabs to navigate between pages
+            </div>
+        </div>
+        
+        <div class="page-navigation">
+            <div class="page-nav-tabs">
+                <button class="page-tab" onclick="showPage('page_0')">Login</button>
+<button class="page-tab" onclick="showPage('page_1')">Dashboard</button>
+            </div>
+        </div>
+        
+        
+        <div class="wireframe-page" id="page_0">
+            <div class="page-header">
+                <div class="page-title">Login</div>
+                <div class="page-type">authentication</div>
+            </div>
+            <div class="wireframe-canvas layout-centered">
+                
+        <div class="wireframe-component">
+            <div class="component-label">
+                <div class="component-icon"></div>
+                App Logo
+            </div>
+            <div class="component-details">
+                Component Type: HEADER<br>Position: top-center<br>Properties: 1 items
+            </div>
+        </div>
+        
+
+        <div class="wireframe-component">
+            <div class="component-label">
+                <div class="component-icon"></div>
+                Login Form
+            </div>
+            <div class="component-details">
+                
+        <div class="form-fields">
+            <input class="form-field" placeholder="Email/Username" readonly><input class="form-field" placeholder="Password" readonly>
+        </div>
+        <div class="form-buttons">
+            <button class="form-button ">Sign In</button><button class="form-button ">Forgot Password</button>
+        </div>
+        
+            </div>
+        </div>
+        
+
+        <div class="wireframe-component">
+            <div class="component-label">
+                <div class="component-icon"></div>
+                Footer Links
+            </div>
+            <div class="component-details">
+                Component Type: FOOTER<br>Position: bottom<br>Properties: 1 items
+            </div>
+        </div>
+        
+            </div>
+        </div>
+        
+
+        <div class="wireframe-page" id="page_1">
+            <div class="page-header">
+                <div class="page-title">Dashboard</div>
+                <div class="page-type">dashboard</div>
+            </div>
+            <div class="wireframe-canvas layout-grid">
+                
+        <div class="wireframe-component">
+            <div class="component-label">
+                <div class="component-icon"></div>
+                Main Navigation
+            </div>
+            <div class="component-details">
+                <div class="navigation-bar"><a href="#" class="nav-item">Home</a><a href="#" class="nav-item">Manage</a><a href="#" class="nav-item">Reports</a><a href="#" class="nav-item">Settings</a></div>
+            </div>
+        </div>
+        
+
+        <div class="wireframe-component">
+            <div class="component-label">
+                <div class="component-icon"></div>
+                Breadcrumb
+            </div>
+            <div class="component-details">
+                Component Type: BREADCRUMB<br>Position: top-left<br>Properties: 1 items
+            </div>
+        </div>
+        
+
+        <div class="wireframe-component">
+            <div class="component-label">
+                <div class="component-icon"></div>
+                Key Metrics
+            </div>
+            <div class="component-details">
+                <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value">1,234</div>
+                    <div class="stat-label">Active Students</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-value">1,234</div>
+                    <div class="stat-label">Course Completion</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-value">1,234</div>
+                    <div class="stat-label">Enrollment Rate</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-value">1,234</div>
+                    <div class="stat-label">Engagement</div>
+                </div>
+                </div>
+            </div>
+        </div>
+        
+
+        <div class="wireframe-component">
+            <div class="component-label">
+                <div class="component-icon"></div>
+                Main Chart/Graph
+            </div>
+            <div class="component-details">
+                <div class="chart-placeholder">📊 Trends (LINE CHART)</div>
+            </div>
+        </div>
+        
+
+        <div class="wireframe-component">
+            <div class="component-label">
+                <div class="component-icon"></div>
+                Recent Items
+            </div>
+            <div class="component-details">
+                Component Type: LIST<br>Position: center-right<br>Properties: 2 items
+            </div>
+        </div>
+        
+
+        <div class="wireframe-component">
+            <div class="component-label">
+                <div class="component-icon"></div>
+                Quick Actions
+            </div>
+            <div class="component-details">
+                Component Type: ACTIONS<br>Position: bottom<br>Properties: 1 items
+            </div>
+        </div>
+        
+            </div>
+        </div>
+        
+        
+        <div class="responsive-note">
+            <strong>📱 Responsive Design Note:</strong> These wireframes represent desktop layouts. 
+            Mobile versions would stack components vertically and optimize for touch interaction.
+        </div>
+    </div>
+    
+    <script>
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.wireframe-page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Hide all tabs
+            document.querySelectorAll('.page-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected page
+            document.getElementById(pageId).classList.add('active');
+            
+            // Activate selected tab
+            document.querySelector(`[onclick="showPage('${pageId}')"]`).classList.add('active');
+        }
+        
+        // Show first page by default
+        document.addEventListener('DOMContentLoaded', function() {
+            const firstPage = document.querySelector('.wireframe-page');
+            const firstTab = document.querySelector('.page-tab');
+            if (firstPage && firstTab) {
+                firstPage.classList.add('active');
+                firstTab.classList.add('active');
+            }
+        });
+    </script>
+</body>
+</html>

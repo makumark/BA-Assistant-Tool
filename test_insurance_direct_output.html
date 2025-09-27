@@ -1,0 +1,108 @@
+
+<div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #111827; padding: 24px; max-width: 1200px; line-height: 1.6;">
+  <header style="text-align: center; margin-bottom: 32px; border-bottom: 2px solid #e5e7eb; padding-bottom: 16px;">
+    <h1 style="color: #1f2937; margin-bottom: 8px; font-size: 28px;">Functional Requirements Document (FRD)</h1>
+    <h2 style="color: #6b7280; margin: 0; font-size: 20px; font-weight: normal;">Insurance Management System — Version 1</h2>
+    <p style="color: #9ca3af; margin: 8px 0 0 0; font-style: italic;">Domain: Insurance</p>
+  </header>
+
+  <section style="margin-bottom: 24px;">
+    <h3 style="color: #1f2937; border-bottom: 2px solid #3b82f6; padding-bottom: 4px;">🎯 Scope and Context</h3>
+    <p><strong>In scope:</strong> quote and bind for priority products (motor/health/life), underwriting rules engine, policy issuance and endorsements, billing and payments, claims FNOL-to-settlement workflow, agent/partner portal</p>
+    <p><strong>Out of scope:</strong> Advanced integrations and third-party services not explicitly mentioned in the BRD.</p>
+  </section>
+
+  <section style="margin-bottom: 24px;">
+    <h3 style="color: #1f2937; border-bottom: 2px solid #3b82f6; padding-bottom: 4px;">👥 Stakeholders</h3>
+    <p>Policyholders, Insurance agents, Underwriters, Claims adjusters, Actuaries, Compliance officers, Brokers, Reinsurers; primary channels: agent portals, customer self-service web/mobile, call centers.</p>
+  </section>
+
+  <section style="margin-bottom: 24px;">
+    <h3 style="color: #1f2937; border-bottom: 2px solid #3b82f6; padding-bottom: 4px;">📋 Assumptions and Constraints</h3>
+    <p><strong>Assumptions:</strong> Standard infrastructure available; users have appropriate access rights; existing systems can integrate as required.</p>
+    <p><strong>Constraints:</strong> Regulatory compliance requirements; integration capabilities; project timeline and budget constraints.</p>
+    <p><strong>Budget:</strong> ₹1.2–₹2.0 crore for discovery, licenses, integrations, build and testing</p>
+  </section>
+
+  <section style="margin-bottom: 24px;">
+    <h3 style="color: #1f2937; border-bottom: 2px solid #3b82f6; padding-bottom: 4px;">⚡ Non-functional Requirements (NFRs)</h3>
+    <ul style="list-style-type: none; padding-left: 0;">
+      <li style="margin-bottom: 8px; padding: 8px; background: #f8fafc; border-left: 4px solid #10b981;">• Regulatory compliance: State insurance regulations, solvency requirements, data retention mandates, audit trail requirements.</li><li style="margin-bottom: 8px; padding: 8px; background: #f8fafc; border-left: 4px solid #10b981;">• Performance: Quote generation < 30 seconds, policy issuance < 5 minutes, claims processing SLA compliance, premium calculation accuracy 99.99%.</li><li style="margin-bottom: 8px; padding: 8px; background: #f8fafc; border-left: 4px solid #10b981;">• Security: PII protection, fraud detection, secure payment processing, role-based access to sensitive data.</li>
+    </ul>
+  </section>
+
+  <section style="margin-bottom: 24px;">
+    <h3 style="color: #1f2937; border-bottom: 2px solid #3b82f6; padding-bottom: 4px;">🗃️ Data Model Highlights</h3>
+    <p>Core entities: Policy, Policyholder, Agent, Claim, Premium, Coverage, Risk Assessment, Underwriting Decision, Payment; key relationships: Policyholder–Policy (1‑M), Policy–Claim (1‑M), Policy–Premium (1‑M), Agent–Policy (M‑M).</p>
+  </section>
+
+  <section style="margin-bottom: 24px;">
+    <h3 style="color: #1f2937; border-bottom: 2px solid #3b82f6; padding-bottom: 4px;">🔗 Interfaces and Integrations</h3>
+    <p>Rating engines: Actuarial calculation systems; Payment gateways: Credit card, bank transfer, ACH processing; Regulatory reporting: NAIC, state insurance department systems; Reinsurance platforms: Treaty management; Third-party data: Credit bureaus, MVR, CLUE reports.</p>
+  </section>
+
+  <section style="margin-bottom: 24px;">
+    <h3 style="color: #1f2937; border-bottom: 2px solid #3b82f6; padding-bottom: 4px;">⚙️ Functional Requirements</h3>
+    
+        <div style="margin-bottom: 20px; border-left: 4px solid #3b82f6; padding-left: 15px; background: #f8fafc; padding: 15px; border-radius: 5px;">
+            <h4 style="margin: 0 0 10px 0; color: #1f2937;">FR-001 This Document Captures The</h4>
+            <p><strong>Description:</strong> The system shall This document captures the business requirements for Insurance Management System.</p>
+            <p><strong>Roles:</strong> Business users, Operations team, System administrators.</p>
+            
+            <div style="margin: 12px 0;">
+                <h5 style="color: #2d3748; margin-bottom: 6px;">Acceptance Criteria:</h5>
+                <ol style="color: #4a5568; line-height: 1.6; margin: 0; padding-left: 20px;">
+                    
+            <li>System response time must be within 3 seconds under normal load</li>
+            <li>All user inputs validated with clear error messages for invalid data</li>
+            <li>User interface provides intuitive navigation with consistent design</li>
+            <li>Data changes are persisted immediately with backup and recovery</li>
+            <li>Audit logs maintained for all user actions and system events</li>
+            
+                </ol>
+            </div>
+            
+            <div style="margin: 12px 0;">
+                <h5 style="color: #2d3748; margin-bottom: 6px;">Validation Rules:</h5>
+                <ol style="color: #4a5568; line-height: 1.6; margin: 0; padding-left: 20px;">
+                    
+            <li>Required fields: all mandatory fields completed before submission</li>
+            <li>Data formats: conform to specified patterns (email, phone, dates)</li>
+            <li>User permissions: verified before restricted functionality access</li>
+            <li>Input lengths: within defined min/max character limits</li>
+            <li>XSS protection: all user inputs sanitized and validated</li>
+            
+                </ol>
+            </div>
+            
+            <p><strong>Traceability:</strong> Links to business objectives and project scope requirements.</p>
+        </div>
+        
+  </section>
+
+  <section style="margin-bottom: 24px;">
+    <h3 style="color: #1f2937; border-bottom: 2px solid #3b82f6; padding-bottom: 4px;">✅ Field-level Validations</h3>
+    <ol style="padding-left: 20px;">
+      <li><strong>V-001:</strong> Enforce data validation and integrity checks.</li><li><strong>V-002:</strong> Enforce proper authentication and authorization.</li>
+    </ol>
+  </section>
+
+  <section style="margin-bottom: 24px;">
+    <h3 style="color: #1f2937; border-bottom: 2px solid #3b82f6; padding-bottom: 4px;">🔄 Workflow Scenarios (High-level)</h3>
+    <p><strong>Primary Workflows:</strong> User registration → Authentication → Core functionality access → Data processing → Results/Output generation → Audit logging.</p>
+    <p><strong>Exception Handling:</strong> Error validation → User notification → Retry mechanisms → Escalation procedures → Recovery processes.</p>
+  </section>
+
+  <section style="margin-bottom: 24px;">
+    <h3 style="color: #1f2937; border-bottom: 2px solid #3b82f6; padding-bottom: 4px;">📊 Acceptance Criteria Summary</h3>
+    <p>All functional requirements must be traceable to business objectives, measurable through specific acceptance criteria, and validated through comprehensive testing scenarios.</p>
+  </section>
+
+  <footer style="border-top: 1px solid #e5e7eb; padding-top: 16px; margin-top: 32px;">
+    <p style="font-size: 12px; color: #6b7280; margin: 0;">
+      Generated by BA Assistant AI Agent • Domain: Insurance • 
+      <span style="color: #3b82f6;">Functional Requirements: 1</span> • 
+      <span style="color: #10b981;">Validations: 2</span>
+    </p>
+  </footer>
+</div>
