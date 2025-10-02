@@ -216,33 +216,6 @@ export default function App() {
 • Implement audit logging for all critical operations<br/>
 • Enforce data backup and disaster recovery procedures`;
     }
-    
-    if (projectLower.includes("healthcare") || projectLower.includes("patient") || projectLower.includes("medical")) {
-      return `• Enforce mandatory patient demographic fields (name, DOB, SSN)<br/>
-• Validate medical record privacy and HIPAA compliance<br/>
-• Require physician authorization for prescription access<br/>
-• Enforce audit trails for all patient data modifications`;
-    }
-    
-    if (projectLower.includes("banking") || projectLower.includes("financial") || projectLower.includes("payment")) {
-      return `• Enforce strong customer authentication and account verification<br/>
-• Validate transaction limits and fraud detection rules<br/>
-• Require regulatory compliance with banking standards<br/>
-• Enforce real-time balance verification before transactions`;
-    }
-    
-    if (projectLower.includes("ecommerce") || projectLower.includes("shopping") || projectLower.includes("order")) {
-      return `• Enforce product inventory validation before order confirmation<br/>
-• Validate shipping address and payment method accuracy<br/>
-• Require secure checkout process with payment verification<br/>
-• Enforce order tracking and delivery confirmation`;
-    }
-    
-    // Default professional validation criteria
-    return `• Enforce data accuracy and completeness validation<br/>
-• Validate user access controls and authentication<br/>
-• Require audit trails for all system modifications<br/>
-• Enforce security protocols and compliance standards`;
   };
 
   const generateBrdHtml = ({ project, inputs, version, domain = null }) => {
