@@ -11,6 +11,8 @@ sys.path.append(os.path.join(os.path.dirname(__file__), 'app'))
 def test_financial_accounting_brd():
     """Test BRD generation with the exact financial accounting example from problem statement."""
     
+    # Test both directly and through main service
+    from app.services.ai_service import generate_brd_html
     from app.services.ai_service_domain_agnostic import generate_domain_agnostic_brd_html
     
     # Exact inputs from problem statement
@@ -51,8 +53,8 @@ Mandatory master data fields; duplicate detection (vendor/customer and invoice n
     print(f"📊 Version: {version}")
     print()
     
-    # Generate BRD
-    html = generate_domain_agnostic_brd_html(project, inputs, version)
+    # Generate BRD using main service (should use domain-agnostic by default)
+    html = generate_brd_html(project, inputs, version)
     
     print(f"✅ BRD Generated: {len(html)} characters")
     print()

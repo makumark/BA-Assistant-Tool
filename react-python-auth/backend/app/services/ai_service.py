@@ -582,11 +582,24 @@ def _call_openai_chat(messages: List[Dict[str, str]], model: Optional[str], temp
 
 def generate_brd_html(project: str, inputs: Dict[str, Any], version: int) -> str:
     """
-    Generate BRD using Agentic Adaptive RAG or fallback to traditional method
+    Generate BRD using domain-agnostic methodology or Agentic RAG if available.
+    
+    This function prioritizes the domain-agnostic BRD generator which follows
+    a standardized structure with proper sections (Scope, Objectives, EPICs, KPIs, Risks)
+    and traceability IDs (OBJ-#, EPIC-<area>-#, KPI-#, RISK-#).
     """
     logger.info(f"🚀 Starting BRD generation for project: {project}")
     
-    # Try Agentic RAG first if available
+    # Check if domain-agnostic generation is requested or should be used by default
+    # Use domain-agnostic generator as the primary method
+    try:
+        from .ai_service_domain_agnostic import generate_domain_agnostic_brd_html
+        logger.info("📋 Using domain-agnostic BRD generator")
+        return generate_domain_agnostic_brd_html(project, inputs, version)
+    except Exception as e:
+        logger.warning(f"⚠️ Domain-agnostic generator error: {e}, falling back to traditional method")
+    
+    # Try Agentic RAG as fallback if available
     if AGENTIC_RAG_AVAILABLE:
         try:
             logger.info("🤖 Using Agentic Adaptive RAG for BRD generation")
